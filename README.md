@@ -1,244 +1,159 @@
-# Lazy Machine Learning 🚀
+# Fern - Experimentation-based machine learning platform
 
-A modern, intuitive web application for building and training machine learning models without writing code. Upload your datasets, configure model parameters through an elegant UI, and visualize results instantly.
+Web-based machine learning platform for training, evaluating, and managing ML models through a no-code interface. Built with React, TypeScript, FastAPI, and Scikit-learn.
 
-## 🌟 Features
+---
 
-### Multiple ML Algorithms
-Train models using a variety of popular machine learning algorithms:
-- **Linear Regression** - Simple linear relationships
-- **Logistic Regression** - Classification problems
-- **Ridge Regression** - Regularized linear regression
-- **Lasso Regression** - L1 regularization
-- **K-Nearest Neighbors** - Instance-based learning
-- **Support Vector Machine** - Powerful classification
-- **Random Forest** - Ensemble decision trees
+## Overview
 
-### User-Friendly Interface
-- 🎨 **Modern UI** - Built with React 19, TypeScript, and TailwindCSS
-- 📊 **Interactive Visualizations** - Powered by Plotly.js for beautiful, interactive charts
-- 🔐 **User Authentication** - Secure signup and login system
-- 💾 **Model Management** - Save, view, and download your trained models
-- 📈 **Real-time Metrics** - R², RMSE, and MAE displayed instantly
-- 🎛️ **Configurable Parameters** - Customize model hyperparameters through dropdowns and inputs
+Lazy Machine Learning provides an interactive environment for:
+- dataset upload and preprocessing
+- configurable model training
+- real-time metric visualization
+- trained model persistence and download
 
-### Backend API
-- ⚡ **FastAPI** - High-performance Python backend
-- 🔄 **CORS Support** - Seamless frontend-backend communication
-- 📦 **Model Persistence** - Models saved using joblib
-- 👤 **User-specific Storage** - Each user has their own model directory
-- 📥 **Model Download** - Export trained models for external use
+The platform focuses on simplifying experimentation workflows while exposing configurable ML parameters through a clean UI.
 
-## 🛠️ Tech Stack
+---
+
+## Features
+
+### Machine Learning Workflows
+- Linear Regression
+- Logistic Regression
+- Ridge Regression
+- Lasso Regression
+- K-Nearest Neighbors
+- Support Vector Machine
+- Random Forest
+
+### Platform Capabilities
+- Interactive dataset upload
+- Configurable hyperparameter selection
+- Real-time metric visualization
+- User authentication
+- Saved model management
+- Downloadable trained models
+
+### Evaluation Metrics
+- R² Score
+- RMSE
+- MAE
+
+---
+
+## Tech Stack
 
 ### Frontend
-- **React 19.2** - Latest React with hooks and concurrent features
-- **TypeScript 5.9** - Type-safe development
-- **Vite 7.2** - Lightning-fast build tool
-- **TailwindCSS 4.1** - Utility-first CSS framework
-- **Plotly.js 3.3** - Interactive data visualization
-- **React Router 7.11** - Client-side routing
-- **React Compiler** - Automatic optimization
+- React
+- TypeScript
+- TailwindCSS
+- Plotly.js
+- Vite
 
 ### Backend
-- **FastAPI** - Modern Python web framework
-- **Uvicorn** - ASGI server
-- **Pandas** - Data manipulation
-- **Scikit-learn** - Machine learning algorithms
-- **Joblib** - Model serialization
-- **Plotly** - Chart generation
+- FastAPI
+- Pandas
+- Scikit-learn
+- Joblib
 
-## 📋 Prerequisites
+---
 
-- **Node.js** (v18 or higher)
-- **Python** (v3.8 or higher)
-- **npm** or **yarn** package manager
-- **pip** Python package manager
+## System Architecture
 
-## 🚀 Getting Started
+```text
+Frontend (React + TypeScript)
+        ↓
+FastAPI Backend
+        ↓
+ML Training Pipeline
+        ↓
+Model Persistence Layer
+````
 
-### 1. Clone the Repository
+---
 
-```bash
-git clone https://github.com/gayathriuthamaraj/lazy_machine_learning.git
-cd lazy_machine_learning
+## Project Structure
+
+```text
+lazy_machine_learning/
+├── backend/
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── models/
+│   └── metadata/
+├── src/
+│   ├── models/
+│   ├── components/
+│   ├── api/
+│   ├── layout/
+│   └── App.tsx
+├── public/
+├── package.json
+└── vite.config.ts
 ```
 
-### 2. Backend Setup
+---
 
-Navigate to the backend directory and install dependencies:
+## Running the Project
+
+### Backend
 
 ```bash
 cd backend
 pip install -r requirements.txt
-```
-
-Start the FastAPI server:
-
-```bash
 uvicorn main:app --reload
 ```
 
-The backend API will be available at `http://localhost:8000`
+Backend runs on:
 
-### 3. Frontend Setup
+```text
+http://localhost:8000
+```
 
-In a new terminal, navigate to the project root and install dependencies:
+### Frontend
 
 ```bash
 npm install
-```
-
-Start the development server:
-
-```bash
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:5173`
+Frontend runs on:
 
-## 📖 Usage
+```text
+http://localhost:5173
+```
 
-### 1. Create an Account
-- Navigate to the login page
-- Sign up with your email and password
-- Get authenticated automatically
+---
 
-### 2. Train a Model
-1. Select a machine learning algorithm from the available options
-2. Configure model parameters using the UI controls
-3. Upload your CSV dataset (must contain a `target` column)
-4. Click "Train" to build your model
-5. View metrics (R², RMSE, MAE) and visualizations
+## API Endpoints
 
-### 3. Manage Models
-- View all your saved models
-- Download trained models (.pkl files)
-- See model metadata and features
+### Authentication
 
-### Dataset Format
-Your CSV file must:
-- Include a `target` column containing the values to predict
-- Have feature columns (everything except `target`)
-- Be properly formatted with headers
+* `POST /auth/signup`
+* `POST /auth/login`
+
+### Models
+
+* `POST /train`
+* `GET /models`
+* `GET /models/{model_id}`
+* `GET /download/{model_id}`
+
+---
+
+## Dataset Requirements
+
+Uploaded CSV datasets must:
+
+* contain a `target` column
+* include feature columns
+* use valid headers and formatting
 
 Example:
+
 ```csv
 feature1,feature2,feature3,target
 1.2,3.4,5.6,10.5
 2.1,4.3,6.5,12.3
-...
 ```
-
-## 🏗️ Project Structure
-
-```
-lazy_machine_learning/
-├── backend/
-│   ├── main.py              # FastAPI application
-│   ├── requirements.txt     # Python dependencies
-│   ├── models/              # Saved model files
-│   └── metadata/            # User metadata
-├── src/
-│   ├── models/              # Model-specific React components
-│   ├── components/          # Reusable UI components
-│   ├── layout/              # Layout components
-│   ├── api/                 # API service layer
-│   ├── content.json         # Model configuration data
-│   └── App.tsx              # Main application component
-├── public/                  # Static assets
-├── package.json             # Node dependencies
-└── vite.config.ts          # Vite configuration
-```
-
-## 🔧 API Endpoints
-
-### Authentication
-- `POST /auth/signup` - Create a new user account
-- `POST /auth/login` - Login and get auth token
-
-### Models
-- `POST /train` - Train a new model
-- `GET /models` - List all user models
-- `GET /models/{model_id}` - Get specific model details
-- `GET /download/{model_id}` - Download model file
-
-## 📊 Available Model Parameters
-
-Each algorithm has configurable parameters accessible through the UI. Examples:
-
-**Linear Regression:**
-- `fit_intercept` - Calculate intercept
-- `copy_X` - Copy input data
-- `positive` - Force positive coefficients
-- `n_jobs` - Number of parallel jobs
-
-**Random Forest:**
-- `n_estimators` - Number of trees
-- `max_depth` - Maximum tree depth
-- `criterion` - Split criterion (gini/entropy)
-- `min_samples_split` - Minimum samples to split
-
-## 🔐 Authentication
-
-The application uses a token-based authentication system:
-- Sign up creates a user profile
-- Login returns a bearer token
-- Token is sent in Authorization header: `Bearer <user_id>`
-- User data and models are stored per-user
-
-## 🎨 UI Components
-
-- **Login Forms** - Authentication interface
-- **Model Home** - Algorithm selection
-- **Model Pages** - Parameter configuration for each algorithm
-- **Saved Model Page** - View and manage trained models
-
-## 📦 Build for Production
-
-### Frontend
-```bash
-npm run build
-```
-
-### Backend
-Deploy using a production ASGI server like Gunicorn:
-```bash
-gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📝 License
-
-This project is open source and available under the MIT License.
-
-## 🐛 Known Issues
-
-- Authentication uses email as user ID (simplified for demo)
-- No password hashing (use proper auth in production)
-- Models are stored locally (consider cloud storage for production)
-
-## 🔮 Future Enhancements
-
-- [ ] Password encryption and proper authentication
-- [ ] More machine learning algorithms
-- [ ] Model comparison features
-- [ ] Dataset validation and preprocessing
-- [ ] Model deployment options
-- [ ] Collaborative features
-- [ ] Cloud storage integration
-
-## 💡 Tips
-
-- Ensure your dataset is clean and properly formatted
-- Start with default parameters and adjust as needed
-- Use the visualizations to understand model performance
-- Download models for use in other projects
-- Check metrics to evaluate model quality
-
----
-
-**Made with ❤️ using React, TypeScript, FastAPI, and Scikit-learn**
